@@ -1,0 +1,1291 @@
+/**
+ * VIDYA AI - Modern Classroom Web Styling
+ * Designed for Indian Tribal & Bilingual Classrooms: High Contrast, Clean Typography,
+ * Touch-Friendly Buttons, Audio Waveforms, and Print-Optimized Worksheets.
+ */
+
+:root {
+  --primary: #0f766e;
+  --primary-dark: #115e59;
+  --primary-light: #14b8a6;
+  --accent: #d97706;
+  --accent-light: #f59e0b;
+  --bg-dark: #0f172a;
+  --bg-surface: #1e293b;
+  --bg-card: rgba(30, 41, 59, 0.85);
+  --border-color: rgba(255, 255, 255, 0.12);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-hindi: #fef08a;
+  --text-tribal: #6ee7b7;
+  --danger: #ef4444;
+  --success: #10b981;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.4);
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans Devanagari', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 75px; /* space for mobile bottom nav */
+}
+
+/* Header & Top Bar */
+.app-header {
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 12px 20px;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.brand-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.brand-logo-icon {
+  font-size: 28px;
+  background: linear-gradient(135deg, var(--primary-light), var(--accent));
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+}
+
+.brand-title {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+}
+
+.brand-subtitle {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.header-status-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.fixed-lang-badge {
+  background: rgba(217, 119, 6, 0.2);
+  border: 1px solid var(--accent);
+  color: #fef08a;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.target-lang-pill {
+  background: rgba(15, 118, 110, 0.25);
+  border: 1px solid var(--primary-light);
+  color: var(--primary-light);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.status-pill {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-online {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid var(--success);
+  color: #34d399;
+}
+
+.status-offline {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid var(--danger);
+  color: #f87171;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  animation: pulseAnimation 2s infinite;
+}
+
+@keyframes pulseAnimation {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+/* Main Container & Screens */
+.main-content {
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 0 16px;
+  flex: 1;
+  width: 100%;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Global Buttons & Inputs */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(15, 118, 110, 0.4);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: var(--bg-surface);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.btn-accent {
+  background: linear-gradient(135deg, var(--accent), #b45309);
+  color: #ffffff;
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+.btn-lg {
+  padding: 14px 28px;
+  font-size: 16px;
+  border-radius: var(--radius-md);
+}
+
+/* ==========================================================================
+   SCREEN 1: TEACHER HOME
+   ========================================================================== */
+.welcome-hero-card {
+  background: linear-gradient(135deg, rgba(15, 118, 110, 0.4), rgba(30, 41, 59, 0.9));
+  border: 1px solid rgba(20, 184, 166, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  margin-bottom: 25px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.welcome-title {
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: #ffffff;
+}
+
+.welcome-subtitle {
+  font-size: 15px;
+  color: var(--text-muted);
+  max-width: 540px;
+  margin-bottom: 16px;
+}
+
+.home-cta-btn {
+  font-size: 18px;
+  padding: 14px 26px;
+}
+
+.home-grid-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.action-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 22px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.action-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary-light);
+  box-shadow: var(--shadow-lg);
+}
+
+.action-card-icon {
+  font-size: 32px;
+  margin-bottom: 4px;
+}
+
+.action-card-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.action-card-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   SCREEN 2: SELECT LANGUAGE
+   ========================================================================== */
+.screen-header-box {
+  margin-bottom: 25px;
+}
+
+.screen-main-heading {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.screen-sub-heading {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.language-selector-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.source-lang-locked-card {
+  background: rgba(217, 119, 6, 0.12);
+  border: 2px dashed var(--accent);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.locked-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.locked-lang-val {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.languages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.language-option-card {
+  background: var(--bg-surface);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.language-option-card:hover {
+  border-color: rgba(20, 184, 166, 0.6);
+}
+
+.language-option-card.selected {
+  border-color: var(--primary-light);
+  background: rgba(15, 118, 110, 0.18);
+  box-shadow: 0 0 0 2px var(--primary-light);
+}
+
+.lang-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.lang-native-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.lang-card-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.lang-greeting-tag {
+  font-size: 11px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 3px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* ==========================================================================
+   SCREEN 3: LIVE CLASSROOM TRANSLATION
+   ========================================================================== */
+.live-classroom-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mic-hero-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+}
+
+.mic-circle-button {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-size: 38px;
+  cursor: pointer;
+  margin: 0 auto 16px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 8px 25px rgba(15, 118, 110, 0.5);
+}
+
+.mic-circle-button:hover {
+  transform: scale(1.05);
+}
+
+.mic-circle-button.recording-active {
+  background: linear-gradient(135deg, var(--danger), #b91c1c);
+  animation: micPulse 1.2s infinite;
+  box-shadow: 0 0 30px rgba(239, 68, 68, 0.8);
+}
+
+@keyframes micPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+.mic-status-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 12px;
+}
+
+/* Waveform Visualizer */
+.waveform-bars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 35px;
+  margin-bottom: 15px;
+}
+
+.waveform-bar {
+  width: 4px;
+  height: 10px;
+  background-color: var(--primary-light);
+  border-radius: 2px;
+  animation: waveAnim 1s ease-in-out infinite;
+}
+
+.waveform-bar:nth-child(2) { animation-delay: 0.1s; }
+.waveform-bar:nth-child(3) { animation-delay: 0.2s; }
+.waveform-bar:nth-child(4) { animation-delay: 0.3s; }
+.waveform-bar:nth-child(5) { animation-delay: 0.4s; }
+.waveform-bar:nth-child(6) { animation-delay: 0.2s; }
+.waveform-bar:nth-child(7) { animation-delay: 0.1s; }
+
+@keyframes waveAnim {
+  0%, 100% { height: 6px; }
+  50% { height: 32px; background-color: var(--accent); }
+}
+
+/* Live Text Input */
+.live-text-input-bar {
+  display: flex;
+  gap: 10px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.classroom-input {
+  flex: 1;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  color: #fff;
+  font-size: 15px;
+  outline: none;
+}
+
+.classroom-input:focus {
+  border-color: var(--primary-light);
+}
+
+/* Preset Quick Phrases */
+.preset-phrases-bar {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 10px 0 5px 0;
+  max-width: 700px;
+  margin: 10px auto 0 auto;
+}
+
+.preset-phrase-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.preset-phrase-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Bilingual Translation Card */
+.bilingual-output-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.output-section-hindi {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+
+.teacher-said-text {
+  font-size: 18px;
+  color: var(--text-hindi);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.translated-output-text {
+  font-size: 22px;
+  color: var(--text-tribal);
+  font-weight: 700;
+  margin-top: 6px;
+}
+
+.phonetic-guide-text {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 6px;
+  font-style: italic;
+}
+
+.vocab-tag-cloud {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.vocab-tag {
+  background: rgba(20, 184, 166, 0.18);
+  border: 1px solid var(--primary);
+  color: var(--primary-light);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+/* Transcript Reel */
+.transcript-reel-container {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+
+.transcript-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 12px 0;
+}
+
+.transcript-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.small-play-btn {
+  background: transparent;
+  border: none;
+  color: var(--primary-light);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.transcript-hindi {
+  font-size: 14px;
+  color: var(--text-hindi);
+}
+
+.transcript-tribal {
+  font-size: 16px;
+  color: var(--text-tribal);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   LIVE FILE TRANSLATION SUITE
+   ========================================================================== */
+.file-upload-dropzone {
+  border: 2px dashed rgba(20, 184, 166, 0.4);
+  background: rgba(15, 118, 110, 0.05);
+  border-radius: var(--radius-md);
+  padding: 35px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 20px;
+}
+
+.file-upload-dropzone:hover,
+.file-upload-dropzone.dragover {
+  background: rgba(15, 118, 110, 0.15);
+  border-color: var(--primary-light);
+}
+
+.dropzone-icon {
+  font-size: 44px;
+  margin-bottom: 10px;
+}
+
+.dropzone-title {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.dropzone-hint {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.sample-doc-triggers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+  font-size: 13px;
+}
+
+.progress-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  margin-bottom: 20px;
+}
+
+.progress-bar-track {
+  height: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transition: width 0.3s ease;
+}
+
+.bilingual-segment-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-bottom: 14px;
+  transition: all 0.2s ease;
+}
+
+.live-reveal-card {
+  animation: slideDownFade 0.4s ease forwards;
+}
+
+@keyframes slideDownFade {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.segment-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.segment-badge {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.segment-source-badge {
+  color: var(--accent-light);
+  font-weight: 600;
+}
+
+.speak-segment-btn {
+  background: rgba(20, 184, 166, 0.15);
+  border: 1px solid var(--primary-light);
+  color: var(--primary-light);
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.segment-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 680px) {
+  .segment-body { grid-template-columns: 1fr; }
+}
+
+.col-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  display: block;
+}
+
+.source-sentence {
+  font-size: 15px;
+  color: var(--text-hindi);
+}
+
+.translated-sentence {
+  font-size: 16px;
+  color: var(--text-tribal);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   SCREEN 4: LESSONS, WORKSHEETS & FLASHCARDS
+   ========================================================================== */
+.grade-tabs-bar {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  margin-bottom: 20px;
+  padding-bottom: 6px;
+}
+
+.grade-filter-tab {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.grade-filter-tab.active {
+  background: var(--primary);
+  border-color: var(--primary-light);
+  color: #fff;
+  font-weight: 600;
+}
+
+.curriculum-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.lesson-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lesson-card-icon {
+  font-size: 32px;
+}
+
+.lesson-card-badge {
+  font-size: 11px;
+  background: rgba(20, 184, 166, 0.15);
+  color: var(--primary-light);
+  padding: 3px 8px;
+  border-radius: 4px;
+  width: fit-content;
+  font-weight: 600;
+}
+
+.lesson-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.lesson-card-summary {
+  font-size: 13px;
+  color: var(--text-muted);
+  flex: 1;
+}
+
+.lesson-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.lesson-count-tag {
+  font-size: 12px;
+  color: var(--text-hindi);
+}
+
+/* Single Lesson Viewer */
+.lesson-nav-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.lesson-sub-tabs-bar {
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 20px;
+}
+
+.lesson-sub-tab {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  padding: 10px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+}
+
+.lesson-sub-tab.active {
+  color: var(--primary-light);
+}
+
+.lesson-sub-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--primary-light);
+  border-radius: 3px 3px 0 0;
+}
+
+.lesson-sentence-row {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.sentence-number {
+  background: rgba(255, 255, 255, 0.1);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.sentence-content {
+  flex: 1;
+}
+
+.sentence-content .hi-text {
+  font-size: 15px;
+  color: var(--text-hindi);
+}
+
+.sentence-content .tg-text {
+  font-size: 17px;
+  color: var(--text-tribal);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.sentence-content .ph-text {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.listen-sentence-btn {
+  background: rgba(20, 184, 166, 0.15);
+  border: 1px solid var(--primary);
+  color: var(--primary-light);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* 3D Interactive Flashcards */
+.flashcards-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.flashcard-scene {
+  width: 320px;
+  height: 240px;
+  perspective: 1000px;
+}
+
+.flashcard-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.flashcard-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.flashcard-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-shadow: var(--shadow-lg);
+  border: 2px solid var(--border-color);
+  text-align: center;
+}
+
+.flashcard-front {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  color: #fff;
+}
+
+.flashcard-back {
+  background: linear-gradient(135deg, #064e3b, #022c22);
+  color: #fff;
+  transform: rotateY(180deg);
+  border-color: var(--primary-light);
+}
+
+.flashcard-icon {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.flashcard-word {
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.flashcard-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Worksheets Styling */
+.printable-worksheet-header {
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+}
+
+.worksheet-meta-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.worksheet-student-fields {
+  display: flex;
+  gap: 20px;
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+.worksheet-title {
+  font-size: 20px;
+  font-weight: 800;
+  text-align: center;
+  color: var(--accent-light);
+}
+
+.worksheet-section {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  margin-bottom: 16px;
+}
+
+.worksheet-section h4 {
+  font-size: 16px;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.section-instruction {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.matching-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.match-item-left, .match-item-right {
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.blanks-list {
+  padding-left: 20px;
+}
+
+.blank-item {
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+.worksheet-input {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid var(--border-color);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+.input-correct { border-color: var(--success) !important; background: rgba(16, 185, 129, 0.2) !important; }
+.input-wrong { border-color: var(--danger) !important; background: rgba(239, 68, 68, 0.2) !important; }
+
+.mcq-box {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.mcq-q-hi { font-size: 15px; color: #fff; }
+.mcq-q-target { font-size: 13px; color: var(--text-tribal); margin-bottom: 8px; }
+
+.mcq-options {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mcq-option-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.correct-answer { border-left: 4px solid var(--success); }
+.wrong-answer { border-left: 4px solid var(--danger); }
+
+.worksheet-action-bar {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.worksheet-score-badge {
+  background: rgba(16, 185, 129, 0.2);
+  border: 1px solid var(--success);
+  padding: 16px;
+  border-radius: var(--radius-md);
+  margin-top: 15px;
+  text-align: center;
+}
+
+/* ==========================================================================
+   SCREEN 5: OFFLINE MODE
+   ========================================================================== */
+.offline-status-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.toggle-switch-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 16px;
+}
+
+/* Switch UI */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 28px;
+}
+
+.switch input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #475569;
+  transition: .3s;
+  border-radius: 28px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .3s;
+  border-radius: 50%;
+}
+
+input:checked + .slider { background-color: var(--accent); }
+input:checked + .slider:before { transform: translateX(24px); }
+
+/* Bottom Mobile Navigation Bar */
+.bottom-nav-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 65px;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 200;
+  padding: 0 10px;
+}
+
+.bottom-nav-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  gap: 3px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.bottom-nav-btn .nav-icon {
+  font-size: 20px;
+}
+
+.bottom-nav-btn.nav-active {
+  color: var(--primary-light);
+}
+
+.bottom-nav-btn.nav-special {
+  color: var(--accent-light);
+}
+
+/* ==========================================================================
+   PRINT STYLES FOR CLASSROOM HANDOUTS & WORKSHEETS
+   ========================================================================== */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding-bottom: 0 !important;
+  }
+  .app-header, .bottom-nav-bar, .no-print, .grade-tabs-bar, .btn {
+    display: none !important;
+  }
+  .main-content {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .worksheet-section, .matching-grid, .match-item-left, .match-item-right {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border-color: #cccccc !important;
+  }
+  .worksheet-input {
+    border-bottom: 1px solid #000 !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    background: transparent !important;
+    color: #000 !important;
+  }
+}

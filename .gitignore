@@ -1,0 +1,18 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Large dataset downloads & caches
+dataset_cache/
+*.parquet
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# System files
+.DS_Store
+Thumbs.db

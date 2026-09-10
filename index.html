@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIDYA AI — Mother Tongue Classroom Learning (विद्या AI)</title>
+  <meta name="description" content="Classroom translation AI for teachers: Hindi to Tribal Mother Tongues (Gondi, Santhali, Bhili, Telugu, Mundari, Kurukh) with live speech, file translation, worksheets, and offline mode.">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0f766e">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Application Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-section" data-target-screen="home">
+        <div class="brand-logo-icon">🌿</div>
+        <div>
+          <div class="brand-title">VIDYA AI <span style="font-weight: 400; font-size: 16px;">(विद्या AI)</span></div>
+          <div class="brand-subtitle">Mother Tongue Classroom Assistant</div>
+        </div>
+      </div>
+
+      <div class="header-status-group">
+        <!-- Fixed Source Language Badge -->
+        <div class="fixed-lang-badge" title="Source language is permanently set to Hindi">
+          🔒 स्रोत: हिन्दी (Fixed)
+        </div>
+
+        <!-- Target Language Selector Badge -->
+        <div class="target-lang-pill" id="header-target-language-pill" data-target-screen="language" title="Click to change target tribal language">
+          लक्ष्य: गोंडी (Gondi)
+        </div>
+
+        <!-- Offline / Online Status Pill -->
+        <div id="network-status-indicator" class="status-pill status-offline">
+          <span class="pulse-dot"></span> 🔴 ऑफ़लाइन फ्रेमवर्क (Offline)
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="main-content">
+
+    <!-- ====================================================================
+         SCREEN 1: TEACHER HOME
+         ==================================================================== -->
+    <section id="screen-home" class="app-screen active-screen">
+      <div class="welcome-hero-card">
+        <div>
+          <h2 class="welcome-title">नमस्ते, शिक्षक जी 👋</h2>
+          <p class="welcome-subtitle">
+            आपकी कक्षा में विद्यार्थियों की मातृभाषा सीखने में सहायक। हिन्दी पाठ्यक्रम को आदिवासी एवं क्षेत्रीय भाषाओं में तुरंत अनुवाद करें और द्विभाषी कार्यपत्रक (Worksheets) बनाएं।
+          </p>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <button class="btn btn-primary btn-lg home-cta-btn" data-target-screen="live">
+              🎤 लाइव कक्षा शुरू करें (Start Teaching)
+            </button>
+            <button class="btn btn-secondary btn-lg" data-target-screen="file-translate">
+              📄 दस्तावेज जीवंत अनुवाद (File Translation)
+            </button>
+          </div>
+        </div>
+        <div style="font-size: 72px; opacity: 0.9;">🏫</div>
+      </div>
+
+      <h3 style="font-size: 18px; margin-bottom: 16px; color: #fff;">कक्षा उपकरण (Classroom Tools)</h3>
+      <div class="home-grid-actions">
+        <!-- Action 1: Live Voice Classroom -->
+        <div class="action-card" data-target-screen="live">
+          <div class="action-card-icon">🎤</div>
+          <div class="action-card-title">लाइव अनुवाद (Live Translation)</div>
+          <div class="action-card-desc">आप हिन्दी में बोलें, ऐप तुरंत छात्र की मातृभाषा में अनुवाद और उच्चारण करेगा।</div>
+        </div>
+
+        <!-- Action 2: Live Document Translation -->
+        <div class="action-card" data-target-screen="file-translate">
+          <div class="action-card-icon">📄</div>
+          <div class="action-card-title">दस्तावेज अनुवाद (File Translation)</div>
+          <div class="action-card-desc">PDF, Word या पाठ्य सामग्री अपलोड करें और लाइव वाक्य-दर-वाक्य अनुवाद देखें।</div>
+        </div>
+
+        <!-- Action 3: Curriculum Lessons -->
+        <div class="action-card" data-target-screen="lessons">
+          <div class="action-card-icon">📚</div>
+          <div class="action-card-title">पाठ्यक्रम एवं FLN (My Lessons)</div>
+          <div class="action-card-desc">कक्षा 1 से 5 तक विज्ञान, गणित और बुनियादी साक्षरता के द्विभाषी पाठ व फ़्लैशकार्ड।</div>
+        </div>
+
+        <!-- Action 4: Language Selection -->
+        <div class="action-card" data-target-screen="language">
+          <div class="action-card-icon">🌐</div>
+          <div class="action-card-title">मातृभाषा चयन (Target Language)</div>
+          <div class="action-card-desc">गोंडी, संथाली, भीली, तेलुगु, मुंडारी या कुड़ुख़ में से कक्षा की भाषा चुनें।</div>
+        </div>
+
+        <!-- Action 5: Offline Content -->
+        <div class="action-card" data-target-screen="offline">
+          <div class="action-card-icon">📥</div>
+          <div class="action-card-title">ऑफ़लाइन सामग्री (Offline Ready)</div>
+          <div class="action-card-desc">बिना इंटरनेट के गांव में पढ़ाने हेतु सभी पाठ और स्थानीय शब्दकोश सुरक्षित रखें।</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SCREEN 2: SELECT LANGUAGE
+         ==================================================================== -->
+    <section id="screen-language" class="app-screen hidden">
+      <div class="screen-header-box">
+        <h2 class="screen-main-heading">कक्षा भाषा चयन (Select Language)</h2>
+        <p class="screen-sub-heading">
+          शिक्षक की बोलने की भाषा हिन्दी (Fixed) रहेगी। अपने छात्रों की मातृभाषा चुनें:
+        </p>
+      </div>
+
+      <div class="language-selector-section">
+        <!-- Fixed Source Language Indicator -->
+        <div class="source-lang-locked-card">
+          <div>
+            <div class="locked-label">स्रोत भाषा (Fixed Source Language)</div>
+            <div class="locked-lang-val">हिन्दी (Hindi)</div>
+          </div>
+          <div style="font-size: 24px;">🔒</div>
+        </div>
+
+        <h3 style="font-size: 16px; color: #fff; margin-top: 10px;">लक्ष्य मातृभाषा चुनें (Target Mother Tongue):</h3>
+        <div class="languages-grid">
+          <!-- Gondi -->
+          <div class="language-option-card selected" data-lang="gondi">
+            <div class="lang-card-header">
+              <span class="lang-native-name">गोंडी (Gōndi)</span>
+              <span>⭐ डिफ़ॉल्ट</span>
+            </div>
+            <div class="lang-card-desc">मध्य प्रदेश, छत्तीसगढ़, महाराष्ट्र, तेलंगाना (मध्य भारत)</div>
+            <div class="lang-greeting-tag">अभिवादन: सेवा जोहार (Sewa Johar)</div>
+          </div>
+
+          <!-- Santhali -->
+          <div class="language-option-card" data-lang="santhali">
+            <div class="lang-card-header">
+              <span class="lang-native-name">संथाली (Santali)</span>
+            </div>
+            <div class="lang-card-desc">झारखंड, ओडिशा, पश्चिम बंगाल, बिहार (ओल चिकी/देवनागरी)</div>
+            <div class="lang-greeting-tag">अभिवादन: जोहार (Johar)</div>
+          </div>
+
+          <!-- Bhili -->
+          <div class="language-option-card" data-lang="bhili">
+            <div class="lang-card-header">
+              <span class="lang-native-name">भीली (Bhili)</span>
+            </div>
+            <div class="lang-card-desc">राजस्थान, मध्य प्रदेश, गुजरात, महाराष्ट्र</div>
+            <div class="lang-greeting-tag">अभिवादन: राम राम सा / जोहार</div>
+          </div>
+
+          <!-- Telugu -->
+          <div class="language-option-card" data-lang="telugu">
+            <div class="lang-card-header">
+              <span class="lang-native-name">తెలుగు (Telugu)</span>
+            </div>
+            <div class="lang-card-desc">तेलंगाना व आंध्र प्रदेश के जनजातीय एजेंसी क्षेत्र</div>
+            <div class="lang-greeting-tag">अभिवादन: నమస్కారం (Namaskaram)</div>
+          </div>
+
+          <!-- Mundari -->
+          <div class="language-option-card" data-lang="mundari">
+            <div class="lang-card-header">
+              <span class="lang-native-name">मुंडारी (Mundari)</span>
+            </div>
+            <div class="lang-card-desc">झारखंड व ओडिशा की मुंडा जनजातियाँ</div>
+            <div class="lang-greeting-tag">अभिवादन: जोहार (Johar)</div>
+          </div>
+
+          <!-- Kurukh -->
+          <div class="language-option-card" data-lang="kurukh">
+            <div class="lang-card-header">
+              <span class="lang-native-name">कुड़ुख़ (Kurukh / Oraon)</span>
+            </div>
+            <div class="lang-card-desc">झारखंड, छत्तीसगढ़, ओडिशा (उरांव समाज)</div>
+            <div class="lang-greeting-tag">अभिवादन: जोहार (Johar)</div>
+          </div>
+        </div>
+
+        <!-- Preview Card -->
+        <div id="selected-lang-greeting-preview" style="background: var(--bg-surface); padding: 14px; border-radius: 8px; border: 1px solid var(--border-color); font-size: 14px;">
+          <strong>अभिवादन (Greeting):</strong> सेवा जोहार (Sewa Johar) <br>
+          <small>क्षेत्र: मध्य प्रदेश, छत्तीसगढ़, महाराष्ट्र, तेलंगाना</small>
+        </div>
+
+        <button id="confirm-language-btn" class="btn btn-primary btn-lg" style="margin-top: 10px;">
+          लाइव कक्षा में प्रवेश करें (Continue to Classroom) →
+        </button>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SCREEN 3: LIVE CLASSROOM TRANSLATION
+         ==================================================================== -->
+    <section id="screen-live" class="app-screen hidden">
+      <div class="screen-header-box" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+        <div>
+          <h2 class="screen-main-heading">लाइव कक्षा (Live Classroom)</h2>
+          <p class="screen-sub-heading">
+            हिन्दी (शिक्षक) ➔ <span class="active-target-lang-label" style="color: var(--text-tribal); font-weight: bold;">गोंडी</span> (छात्र)
+          </p>
+        </div>
+        <button class="btn btn-sm btn-secondary" data-target-screen="language">
+          🔄 भाषा बदलें
+        </button>
+      </div>
+
+      <div class="live-classroom-container">
+        <!-- Big Microphone Hero Panel -->
+        <div class="mic-hero-panel">
+          <button id="mic-action-btn" class="mic-circle-button" title="बोलने के लिए दबाएं">
+            🎤
+          </button>
+          <div id="mic-status-label" class="mic-status-text">
+            बोलने के लिए दबाएं (Tap or Hold to Speak Hindi)
+          </div>
+
+          <!-- Waveform Visualizer -->
+          <div id="audio-waveform-visualizer" class="waveform-bars hidden">
+            <div class="waveform-bar"></div>
+            <div class="waveform-bar"></div>
+            <div class="waveform-bar"></div>
+            <div class="waveform-bar"></div>
+            <div class="waveform-bar"></div>
+            <div class="waveform-bar"></div>
+            <div class="waveform-bar"></div>
+          </div>
+
+          <!-- Text Input Fallback -->
+          <div class="live-text-input-bar">
+            <input type="text" id="live-hindi-text-input" class="classroom-input" placeholder="या यहाँ हिन्दी में टाइप करें (उदा. पौधों को पानी चाहिए)...">
+            <button id="send-live-text-btn" class="btn btn-primary">अनुवाद करें</button>
+          </div>
+
+          <!-- Preset Quick Teacher Phrases -->
+          <div class="preset-phrases-bar">
+            <span style="font-size: 12px; color: var(--text-muted); align-self: center;">त्वरित वाक्य:</span>
+            <button class="preset-phrase-btn" data-phrase="पौधों को पानी चाहिए।">पौधों को पानी चाहिए</button>
+            <button class="preset-phrase-btn" data-phrase="सभी बच्चे अपनी किताब खोलें।">किताब खोलें</button>
+            <button class="preset-phrase-btn" data-phrase="जल ही जीवन है।">जल ही जीवन है</button>
+            <button class="preset-phrase-btn" data-phrase="बैठ जाओ और ध्यान से सुनो।">बैठ जाओ और सुनो</button>
+          </div>
+        </div>
+
+        <!-- Bilingual Translation Display Card -->
+        <div id="live-translation-card" class="bilingual-output-card">
+          <div class="output-section-hindi">
+            <label class="col-label">👩‍🏫 शिक्षक ने कहा (Teacher said in Hindi):</label>
+            <div id="live-teacher-said-content" class="teacher-said-text">
+              "पौधों को बढ़ने के लिए पानी और सूर्य का प्रकाश चाहिए।"
+            </div>
+          </div>
+
+          <div class="output-section-target">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <label class="col-label">👧 छात्र की मातृभाषा (<span class="active-target-lang-label">गोंडी</span>):</label>
+              <button id="play-last-translation-audio-btn" class="btn btn-sm btn-accent">
+                🔊 उच्चारण सुनें (Play Audio)
+              </button>
+            </div>
+            <div id="live-translated-text-content" class="translated-output-text">
+              मरान तेकी वाड़ी कीने संगे येर अन पोरदु वेलंग पाइजे।
+            </div>
+            <div id="live-pronunciation-guide-content" class="phonetic-guide-text">
+              🗣️ उच्चारण: <em>Maraan teki vaadee keene sange yer an pordu velang paije.</em>
+            </div>
+
+            <!-- Vocabulary Tag Cloud -->
+            <div id="live-vocab-tags-container" class="vocab-tag-cloud">
+              <span class="vocab-tag">पौधे = मरान (Maraan)</span>
+              <span class="vocab-tag">पानी = येर (Yer)</span>
+              <span class="vocab-tag">सूर्य = पोरदु (Pordu)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Transcript Reel -->
+        <div class="transcript-reel-container">
+          <h4 style="font-size: 15px; margin-bottom: 12px; color: #fff;">कक्षा संवाद इतिहास (Classroom Speech Log)</h4>
+          <div id="classroom-transcript-reel"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         LIVE FILE TRANSLATION SUITE (User Explicit Requirement)
+         ==================================================================== -->
+    <section id="screen-file-translate" class="app-screen hidden">
+      <div class="screen-header-box">
+        <h2 class="screen-main-heading">दस्तावेज जीवंत अनुवाद (Live File Translation)</h2>
+        <p class="screen-sub-heading">
+          अपनी पाठ्यपुस्तक, नोट्स या कार्यपत्रक (PDF, Word DOCX या Text) अपलोड करें। सिस्टम वाक्य-दर-वाक्य जीवंत अनुवाद करेगा।
+        </p>
+      </div>
+
+      <!-- Drag & Drop Zone -->
+      <div id="file-dropzone" class="file-upload-dropzone">
+        <div class="dropzone-icon">📁</div>
+        <div class="dropzone-title">फाइल यहाँ खींचें या चुनने के लिए क्लिक करें</div>
+        <div class="dropzone-hint">समर्थित प्रारूप: PDF (.pdf), Word (.docx), Text (.txt)</div>
+        <input type="file" id="file-upload-input" accept=".pdf,.docx,.txt,.md" style="display: none;">
+        <button id="browse-file-btn" class="btn btn-primary">कंप्यूटर / मोबाइल से फाइल चुनें</button>
+
+        <!-- Sample One-Click Document Triggers -->
+        <div class="sample-doc-triggers">
+          <span style="color: var(--text-muted);">या तैयार पाठ आज़माएं:</span>
+          <button id="load-sample-science-btn" class="btn btn-sm btn-secondary">🌱 कक्षा 3 विज्ञान (पौधे)</button>
+          <button id="load-sample-water-btn" class="btn btn-sm btn-secondary">💧 कक्षा 2 EVS (जल चक्र)</button>
+        </div>
+      </div>
+
+      <!-- Uploaded File Details -->
+      <div id="uploaded-file-details" class="hidden" style="background: var(--bg-surface); padding: 12px 18px; border-radius: 8px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--border-color);">
+        <div>
+          📄 <strong id="uploaded-filename">document.txt</strong>
+          <span id="uploaded-filesize" style="font-size: 12px; color: var(--text-muted); margin-left: 8px;"></span>
+        </div>
+        <div class="target-lang-pill" style="margin: 0;">अनुवाद लक्ष्य: <span class="active-target-lang-label">गोंडी</span></div>
+      </div>
+
+      <!-- Live Progressive Translation Progress -->
+      <div id="live-translation-progress-box" class="progress-card hidden">
+        <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 600;">
+          <span id="file-translation-status-text">जीवंत अनुवाद प्रारंभ हो रहा है...</span>
+          <span id="file-translation-percent" style="color: var(--accent-light);">0%</span>
+        </div>
+        <div class="progress-bar-track">
+          <div id="file-translation-progress-bar" class="progress-bar-fill"></div>
+        </div>
+      </div>
+
+      <!-- Post-Translation Action Bar -->
+      <div id="file-post-translation-actions" class="hidden no-print" style="margin-bottom: 20px; display: flex; gap: 12px; flex-wrap: wrap;">
+        <button id="generate-worksheet-from-file-btn" class="btn btn-primary">
+          📝 इस दस्तावेज से द्विभाषी कार्यपत्रक (Worksheet) बनाएं
+        </button>
+        <button id="print-bilingual-file-btn" class="btn btn-secondary">
+          🖨️ छात्र हैंडआउट प्रिंट करें (Print / PDF)
+        </button>
+      </div>
+
+      <!-- Segment by Segment Live Stream Results -->
+      <div id="file-translation-results-container"></div>
+    </section>
+
+    <!-- ====================================================================
+         SCREEN 4: LESSON MODE & WORKSHEETS / FLASHCARDS
+         ==================================================================== -->
+    <section id="screen-lessons" class="app-screen hidden">
+      <!-- Browser View -->
+      <div id="lessons-browser-view">
+        <div class="screen-header-box">
+          <h2 class="screen-main-heading">पाठ्यक्रम एवं FLN (Classroom Lessons)</h2>
+          <p class="screen-sub-heading">
+            कक्षा 1 से 5 हेतु द्विभाषी पाठ, स्वतः निर्मित अभ्यास पत्र और इंटरएक्टिव फ़्लैशकार्ड:
+          </p>
+        </div>
+
+        <!-- Grade Filter Tabs -->
+        <div class="grade-tabs-bar">
+          <button class="grade-filter-tab active" data-grade="all">सभी पाठ (All)</button>
+          <button class="grade-filter-tab" data-grade="3">कक्षा 3 (Class 3)</button>
+          <button class="grade-filter-tab" data-grade="2">कक्षा 2 (Class 2)</button>
+          <button class="grade-filter-tab" data-grade="1">कक्षा 1 (Class 1)</button>
+          <button class="grade-filter-tab" data-grade="FLN">बुनियादी FLN</button>
+        </div>
+
+        <!-- Grid of Lessons -->
+        <div id="curriculum-lessons-grid" class="curriculum-grid"></div>
+      </div>
+
+      <!-- Single Lesson Detail View -->
+      <div id="single-lesson-view" class="hidden">
+        <div class="lesson-nav-top no-print">
+          <button id="back-to-lessons-btn" class="btn btn-sm btn-secondary">
+            ← सभी पाठों पर वापस जाएं
+          </button>
+          <div id="active-lesson-badge" class="lesson-card-badge">Class 3 Science</div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
+          <h2 id="active-lesson-title" style="font-size: 24px; font-weight: 800; color: #fff;"></h2>
+          <button id="listen-full-lesson-btn" class="btn btn-primary no-print">
+            🔊 पूरा पाठ सुनें (Read Aloud)
+          </button>
+        </div>
+
+        <!-- Sub Tabs: Reading, Worksheets, Flashcards -->
+        <div class="lesson-sub-tabs-bar no-print">
+          <button class="lesson-sub-tab active" data-tab-target="bilingual-reading">
+            📖 द्विभाषी पाठ (Reading)
+          </button>
+          <button class="lesson-sub-tab" data-tab-target="bilingual-worksheet">
+            📝 अभ्यास पत्र (Worksheet)
+          </button>
+          <button class="lesson-sub-tab" data-tab-target="bilingual-flashcards">
+            🃏 फ़्लैशकार्ड (Flashcards)
+          </button>
+        </div>
+
+        <!-- Tab 1: Bilingual Reading Sentences -->
+        <div id="tab-bilingual-reading">
+          <div id="lesson-bilingual-sentences-container"></div>
+        </div>
+
+        <!-- Tab 2: Automated Bilingual Worksheet -->
+        <div id="tab-bilingual-worksheet" class="hidden">
+          <div id="worksheet-content-area"></div>
+        </div>
+
+        <!-- Tab 3: 3D Interactive Flashcards -->
+        <div id="tab-bilingual-flashcards" class="hidden">
+          <div class="flashcards-container">
+            <div style="font-size: 14px; color: var(--text-muted); margin-bottom: -10px;">
+              कार्ड पलटने के लिए क्लिक करें (Click card to flip):
+            </div>
+
+            <div class="flashcard-scene">
+              <div id="interactive-flashcard" class="flashcard-card">
+                <!-- Front: Hindi -->
+                <div class="flashcard-face flashcard-front">
+                  <div id="flashcard-front-icon" class="flashcard-icon">🌱</div>
+                  <div id="flashcard-front-word" class="flashcard-word">पौधा (Plant)</div>
+                  <small style="margin-top: 8px; color: var(--text-muted);">हिन्दी (स्रोत भाषा)</small>
+                </div>
+
+                <!-- Back: Tribal Mother Tongue -->
+                <div class="flashcard-face flashcard-back">
+                  <div class="flashcard-word" id="flashcard-back-word" style="color: var(--text-tribal);">मरका</div>
+                  <div id="flashcard-back-phonetic" style="font-size: 15px; margin-top: 6px; font-style: italic;">
+                    Marka
+                  </div>
+                  <button id="speak-flashcard-btn" class="btn btn-sm btn-accent" style="margin-top: 15px;">
+                    🔊 उच्चारण सुनें
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="flashcard-controls">
+              <button id="prev-flashcard-btn" class="btn btn-secondary">← पिछला</button>
+              <span id="flashcard-progress-counter" style="font-weight: 600; font-size: 14px;">कार्ड 1 / 6</span>
+              <button id="next-flashcard-btn" class="btn btn-secondary">अगला →</button>
+            </div>
+            <button id="flip-card-action-btn" class="btn btn-primary btn-sm" style="margin-top: 6px;">
+              🔄 कार्ड पलटें (Flip Card)
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SCREEN 5: OFFLINE MODE & STORAGE
+         ==================================================================== -->
+    <section id="screen-offline" class="app-screen hidden">
+      <div class="screen-header-box">
+        <h2 class="screen-main-heading">ऑफ़लाइन कक्षा प्रबंधन (Offline Classroom)</h2>
+        <p class="screen-sub-heading">
+          दूरस्थ आदिवासी क्षेत्रों में जहाँ इंटरनेट कनेक्टिविटी नहीं होती, यह ऐप पूरी तरह स्थानीय रूप से काम करता है।
+        </p>
+      </div>
+
+      <div class="offline-status-card">
+        <!-- Simulate Offline Mode Toggle -->
+        <div class="toggle-switch-container">
+          <div>
+            <h4 style="font-size: 16px; color: #fff;">ऑफ़लाइन मोड सिमुलेट करें (Simulate Offline Mode)</h4>
+            <p style="font-size: 13px; color: var(--text-muted);">
+              परीक्षण हेतु सर्वर नेटवर्क बंद करें और पूर्णतः स्थानीय ब्राउज़र इंजन की कार्यक्षमता देखें।
+            </p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="simulate-offline-toggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div id="offline-storage-stats" style="background: rgba(255, 255, 255, 0.04); padding: 14px; border-radius: 8px; font-size: 14px; line-height: 1.8; margin-bottom: 20px;">
+          <strong>सहेजे गए पाठ (Cached Lessons):</strong> लोड हो रहा है...<br>
+          <strong>ऑफलाइन शब्दकोश:</strong> 6 भाषाएँ (गोंडी, संथाली, भीली, तेलुगु, मुंडारी, कुड़ुख़)<br>
+          <strong>स्थानीय डेटाबेस:</strong> IndexedDB Ready
+        </div>
+
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <button id="download-all-offline-btn" class="btn btn-primary">
+            📥 सभी पाठ ऑफ़लाइन डाउनलोड करें (Cache All Lessons)
+          </button>
+          <button class="btn btn-secondary" onclick="window.navigateToScreen('live')">
+            🎤 ऑफ़लाइन लाइव अनुवाद शुरू करें
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Mobile Bottom Navigation Bar -->
+  <nav class="bottom-nav-bar no-print">
+    <button class="bottom-nav-btn nav-active" data-target-screen="home">
+      <span class="nav-icon">🏠</span>
+      <span>गृह</span>
+    </button>
+    <button class="bottom-nav-btn" data-target-screen="language">
+      <span class="nav-icon">🌐</span>
+      <span>भाषा</span>
+    </button>
+    <button class="bottom-nav-btn nav-special" data-target-screen="live">
+      <span class="nav-icon">🎤</span>
+      <span>लाइव कक्षा</span>
+    </button>
+    <button class="bottom-nav-btn" data-target-screen="file-translate">
+      <span class="nav-icon">📄</span>
+      <span>दस्तावेज</span>
+    </button>
+    <button class="bottom-nav-btn" data-target-screen="lessons">
+      <span class="nav-icon">📚</span>
+      <span>पाठ</span>
+    </button>
+    <button class="bottom-nav-btn" data-target-screen="offline">
+      <span class="nav-icon">📥</span>
+      <span>ऑफ़लाइन</span>
+    </button>
+  </nav>
+
+  <!-- Scripts -->
+  <script src="js/offline_engine.js?v=2"></script>
+  <script src="js/stt_tts.js?v=2"></script>
+  <script src="js/file_translator.js?v=2"></script>
+  <script src="js/worksheets.js?v=2"></script>
+  <script src="js/app.js?v=2"></script>
+</body>
+</html>

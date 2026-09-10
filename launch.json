@@ -1,0 +1,35 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "🚀 Launch VIDYA AI FastAPI Backend",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "backend.app:app",
+                "--host",
+                "0.0.0.0",
+                "--port",
+                "8000",
+                "--reload"
+            ],
+            "jinja": true,
+            "justMyCode": true
+        },
+        {
+            "name": "🧪 Run VIDYA AI Test Suite",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/test_app.py",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "📚 Build Pralekha Offline SQLite DB",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/backend/build_offline_db.py",
+            "console": "integratedTerminal"
+        }
+    ]
+}
